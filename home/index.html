@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manejah PR — Brand Storytelling Agency</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,100;0,300;1,100;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --plum:       #51404B;
+    --slate:      #4D5B6A;
+    --mauve:      #8C8087;
+    --cream:      #E8DCCF;
+    --cream-light:#F5F0E8;
+    --warm-dark:  #3A2E35;
+    --dark:       #2A2025;
+    --ink:        #1E171B;
+    --white:      #FDFBF8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'IBM Plex Serif', Georgia, serif;
+    font-weight: 300;
+    background: var(--white);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 4rem;
+    transition: background 0.4s, border-color 0.4s;
+  }
+  nav.scrolled {
+    background: rgba(253,251,248,0.96);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(81,64,75,0.1);
+  }
+  /* Over hero: everything white */
+  nav.over-hero .nav-links a { color: rgba(255,255,255,0.88); opacity: 1; }
+  nav.over-hero .nav-links a:hover { color: #fff; }
+  nav.over-hero .hamburger span { background: #fff; }
+  nav.over-hero .nav-cta {
+    background: rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,0.5);
+    color: #fff;
+  }
+  nav.over-hero .nav-cta:hover { background: rgba(255,255,255,0.24); }
+  nav.over-hero .nav-logo-svg { color: #fff; }
+
+  /* Scrolled: dark palette */
+  nav.scrolled .nav-links a { color: var(--plum); opacity: 0.75; }
+  nav.scrolled .nav-links a:hover { opacity: 1; }
+  nav.scrolled .hamburger span { background: var(--plum); }
+  nav.scrolled .nav-cta { background: var(--plum); border-color: transparent; color: var(--white); }
+  nav.scrolled .nav-logo-svg { color: var(--plum); }
+
+  .nav-logo { display: flex; align-items: center; text-decoration: none; }
+  .nav-logo-svg { height: 40px; width: auto; color: #fff; transition: color 0.3s; }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-family: 'IBM Plex Serif', Georgia, serif;
+    font-weight: 300;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: opacity 0.2s, color 0.3s;
+  }
+  .nav-cta {
+    font-family: 'IBM Plex Serif', Georgia, serif;
+    font-size: 0.63rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.7rem 1.6rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.25s, color 0.25s;
+    white-space: nowrap;
+    border: 1px solid transparent;
+  }
+
+  /* ── HAMBURGER ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 6px;
+    z-index: 201;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 1.5px;
+    transition: transform 0.3s, opacity 0.3s, background 0.3s;
+    transform-origin: center;
+  }
+  .hamburger.active span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  /* Mobile overlay */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--white);
+    z-index: 199;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: 'IBM Plex Serif', Georgia, serif;
+    font-weight: 100;
+    font-size: clamp(2rem, 8vw, 3rem);
+    letter-spacing: 0.08em;
+    color: var(--plum);
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 0.75rem 2rem;
+    border-bottom: 1px solid var(--cream);
+    width: 100%;
+    text-align: center;
+    transition: color 0.2s, background 0.2s;
+  }
+  .mobile-menu a:first-child { border-top: 1px solid var(--cream); }
+  .mobile-menu a:hover { background: var(--cream-light); }
+  .mobile-menu-footer {
+    margin-top: 2.5rem;
+    font-size: 0.63rem;
+    letter-spacing: 0.2em;
+    color: var(--mauve);
+    text-transform: uppercase;
+  }
+
+  /* ── HERO ── */
+  #home {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=1600&q=85') center/cover no-repeat;
+    z-index: 0;
+    transform: scale(1.04);
+    animation: heroZoom 12s ease-out forwards;
+  }
+  @keyframes heroZoom {
+    from { transform: scale(1.04); }
+    to   { transform: scale(1); }
+  }
+  /* Strong, clear overlay — solid enough for white text to pop */
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(42, 32, 37, 0.68);
+    z-index: 1;
+  }
+  /* Extra left-side darkening so headline is always legible */
+  .hero-overlay-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(30,23,27,0.45) 0%, transparent 65%);
+    z-index: 2;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 3;
+    padding: 10rem 6rem 8rem;
+    max-width: 720px;
+  }
+  .hero-eyebrow {
+    font-size: 0.62rem;
+    font-weight: 300;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(232,220,207,0.75);
+    margin-bottom: 1.75rem;
+    opacity: 0;
+    animation: fadeUp 0.8s forwards 0.4s;
+  }
+  .hero-headline {
+    font-family: 'IBM Plex Serif', Georgia, serif;
+    font-weight: 100;
+    font-size: clamp(3rem, 5.5vw, 6rem);
+    line-height: 1.04;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.9s forwards 0.6s;
+  }
+  .hero-headline em { font-style: italic; color: var(--cream); }
+  .hero-sub {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(232,220,207,0.85);
+    max-width: 440px;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.9s forwards 0.8s;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.9s forwards 1s;
+  }
+  .btn-primary {
+    font-family: 'IBM Plex Serif', Georgia, serif;
+    font-size: 0.63rem;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--plum);
+    border: 1px solid transparent;
+    padding: 1rem 2.4rem;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.25s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--slate); transform: translateY(-1px); }
+  .btn-ghost-light {
+    font-family: 'IBM Plex Serif', Georgia, serif;
+    font-size: 0.63rem;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.5);
+    padding: 1rem 2.4rem;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.25s;
+    background: transparent;
+  }
+  .btn-ghost-light:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
+  .btn-ghost {
+    font-family: 'IBM Plex Serif', Georgia, serif;
+    font-size: 0.63rem;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--plum);
+    border: 1px solid var(--plum);
+    padding: 1rem 2.4rem;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.25s;
+    background: transparent;
+  }
+  .btn-ghost:hover { background: var(--plum); color: var(--white); }
+
+  /* hero bottom stats bar */
+  .hero-bottom-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    z-index: 4;
+    display: flex;
+    align-items: stretch;
+    height: 72px;
+  }
+  .hero-bar-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background: rgba(30,23,27,0.68);
+    backdrop-filter: blur(8px);
+    border-right: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.3s;
+  }
+  .hero-bar-item:last-child { border-right: none; }
+  .hero-bar-item:hover { background: rgba(77,91,106,0.65); }
+  .hero-bar-num {
+    font-family: 'IBM Plex Serif', Georgia, serif;
+    font-weight: 100;
+    font-size: 1.4rem;
+    color: var(--cream);
+    line-height: 1;
+  }
+  .hero-bar-label {
+    font-size: 0.52rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(232,220,207,0.5);
+    line-height: 1.5;
+  }
+
+  /* ── MARQUEE ── */
+  .marquee-strip {
+    background: var(--plum);
+    padding: 0.85rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .marquee-inner { display: inline-flex; animation: marquee 28s linear infinite; }
+  .marquee-inner span {
+    font-size: 0.58rem;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--cream);
+    padding: 0 2.5rem;
+    opacity: 0.7;
+  }
+  .marquee-inner span.dot { color: var(--mauve); letter-spacing: 0; padding: 0; opacity: 0.4; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ── SECTION COMMONS ── */
+  .section-label {
+    font-size: 0.58rem;
+    font-weight: 300;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    color: var(--mauve);
+    margin-bottom: 1.25rem;
+  }
+  .section-headline {
+    font-family: 'IBM Plex Serif', Georgia, serif;
+    font-weight: 100;
+    font-size: clamp(2.4rem, 4vw, 4.2rem);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+  .section-headline em { font-style: italic; }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── SERVICES  (light bg) ── */
+  #services {
+    background: var(--white);
+    padding: 8rem 6rem;
+  }
+  .services-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: end;
+    margin-bottom: 4.5rem;
+  }
+  #services .section-headline { color: var(--plum); }
+  #services .section-headline em { color: var(--slate); }
+  .services-intro {
+    font-size: 0.98rem;
+    line-height: 1.85;
+    color: #6a5860;
+    font-weight: 300;
+    max-width: 440px;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+  .service-card {
+    background: var(--cream-light);
+    padding: 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 3px;
+    background: var(--plum);
+    transition: width 0.4s ease;
+  }
+  .service-card:hover::before { width: 100%; }
+  .service-card:hover { background: var(--cream); }
+  .service-num {
+    font-size: 0.58rem;
+    font-weight: 100;
+    letter-spacing: 0.2em;
+    color: var(--mauve);
+    margin-bottom: 1.5rem;
+  }
+  .service-icon {
+    width: 28px; height: 1px;
+    background: var(--plum);
+    opacity: 0.4;
+    margin-bottom: 1.5rem;
+    transition: width 0.3s, opacity 0.3s;
+  }
+  .service-card:hover .service-icon { width: 44px; opacity: 1; }
+  .service-title {
+    font-family: 'IBM Plex Serif', Georgia, serif;
+    font-weight: 100;
+    font-size: 1.4rem;
+    line-height: 1.2;
+    color: var(--plum);
+    margin-bottom: 0.9rem;
+  }
+  .service-desc {
+    font-size: 0.84rem;
+    line-height: 1.8;
+    color: var(--mauve);
+    font-weight: 300;
+  }
+
+  /* ── CLIENTS  (dark bg) ── */
+  #clients {
+    background: var(--plum);
+    padding: 8rem 6rem;
+    position: relative;
+    overflow: hidden;
+  }
+  #clients::before {
+    content: 'CLIENTS';
+    position: absolute;
+    top: -1rem; right: -1rem;
+    font-family: 'IBM Plex Serif', Georgia, serif;
+    font-weight: 100;
+    font-size: 18rem;
+    color: rgba(255,255,255,0.03);
+    letter-spacing: -0.05em;
+    pointer-events: none;
+    line-height: 1;
+  }
+  .clients-header { margin-bottom: 4.5rem; }
+  .clients-header .section-label { color: var(--mauve); }
+  .clients-header .section-headline { color: var(--cream); }
+  .clients-header .section-headline em { color: rgba(232,220,207,0.6); }
+  .clients-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-bottom: 4.5rem;
+  }
+  .client-card {
+    background: rgba(0,0,0,0.18);
+    padding: 2.5rem 2rem;
+    border: 1px solid rgba(255,255,255,0.07);
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .client-card:hover { border-color: rgba(232,220,207,0.25); background: rgba(0,0,0,0.28); }
+  .client-industry {
+    font-size: 0.54rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--mauve);
+    opacity: 0.75;
+    margin-bottom: 0.85rem;
+  }
+  .client-name {
+    font-family: 'IBM Plex Serif', Georgia, serif;
+    font-weight: 100;
+    font-size: 1.05rem;
+    color: var(--cream);
+    margin-bottom: 0.7rem;
+    line-height: 1.3;
+  }
+  .client-desc { font-size: 0.78rem; line-height: 1.7; color: rgba(232,220,207,0.4); }
+  .client-tag {
+    display: inline-block;
+    margin-top: 1.1rem;
+    font-size: 0.52rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mauve);
+    border: 1px solid rgba(140,128,135,0.35);
+    padding: 0.3rem 0.7rem;
+  }
+
+  /* ── TESTIMONY  (light bg) ── */
+  #testimony {
+    background: var(--cream-light);
+    padding: 8rem 6rem;
+  }
+  #testimony .section-headline { color: var(--plum); }
+  #testimony .section-headline em { color: var(--slate); }
+  .testimony-header { margin-bottom: 4rem; }
+  .testimony-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+  }
+  .testimony-featured {
+    background: var(--white);
+    padding: 4rem;
+    position: relative;
+  }
+  .testimony-featured::before {
+    content: '\201C';
+    position: absolute;
+    top: 1rem; left: 2.5rem;
+    font-family: 'IBM Plex Serif', Georgia, serif;
+    font-size: 7rem;
+    color: var(--cream);
+    line-height: 1;
+    font-weight: 100;
+  }
+  .testimony-text {
+    font-family: 'IBM Plex Serif', Georgia, serif;
+    font-weight: 100;
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.75;
+    color: var(--plum);
+    margin-top: 2.5rem;
+    margin-bottom: 2rem;
+  }
+  .testimony-cite { display: flex; align-items: center; gap: 1rem; }
+  .testimony-cite-line { width: 28px; height: 1px; background: var(--mauve); }
+  .testimony-author {
+    font-size: 0.63rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mauve);
+  }
+  .testimony-stack { display: flex; flex-direction: column; gap: 2px; }
+  .testimony-mini {
+    background: var(--white);
+    padding: 2rem 2.5rem;
+    border-left: 3px solid var(--plum);
+    transition: border-color 0.3s;
+  }
+  .testimony-mini:hover { border-color: var(--slate); }
+  .testimony-mini-text {
+    font-family: 'IBM Plex Serif', Georgia, serif;
+    font-weight: 100;
+    font-style: italic;
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: var(--plum);
+    margin-bottom: 0.85rem;
+  }
+  .testimony-mini-author {
+    font-size: 0.57rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mauve);
+  }
+
+  /* ── CONNECT  (dark left / light right) ── */
+  #connect {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 70vh;
+  }
+  .connect-left {
+    background: var(--slate);
+    padding: 7rem 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .connect-left::after {
+    content: 'M';
+    position: absolute;
+    bottom: -4rem; right: -2rem;
+    font-family: 'IBM Plex Serif', Georgia, serif;
+    font-weight: 100;
+    font-size: 22rem;
+    color: rgba(255,255,255,0.04);
+    line-height: 1;
+    pointer-events: none;
+  }
+  .connect-left .section-label { color: rgba(232,220,207,0.5); }
+  .connect-headline {
+    font-family: 'IBM Plex Serif', Georgia, serif;
+    font-weight: 100;
+    font-size: clamp(2.4rem, 3.5vw, 3.8rem);
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+  .connect-headline em { font-style: italic; opacity: 0.65; }
+  .connect-body {
+    font-size: 0.93rem;
+    line-height: 1.8;
+    color: rgba(232,220,207,0.55);
+    margin-bottom: 3rem;
+    max-width: 360px;
+  }
+  .connect-details { display: flex; flex-direction: column; gap: 0.75rem; }
+  .connect-detail {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: rgba(232,220,207,0.7);
+  }
+  .connect-detail-icon { width: 18px; height: 1px; background: var(--mauve); opacity: 0.6; flex-shrink: 0; }
+
+  .connect-right {
+    background: var(--white);
+    padding: 7rem 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .form-group { margin-bottom: 1.7rem; }
+  .form-label {
+    display: block;
+    font-size: 0.57rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--mauve);
+    margin-bottom: 0.55rem;
+  }
+  .form-input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--cream);
+    padding: 0.7rem 0;
+    font-family: 'IBM Plex Serif', Georgia, serif;
+    font-size: 0.93rem;
+    font-weight: 300;
+    color: var(--dark);
+    background: transparent;
+    outline: none;
+    transition: border-color 0.3s;
+    -webkit-appearance: none;
+  }
+  .form-input:focus { border-color: var(--plum); }
+  .form-input::placeholder { color: rgba(140,128,135,0.35); }
+  textarea.form-input { resize: none; min-height: 90px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+  .form-success { display: none; text-align: center; padding: 3rem 1rem; }
+  .form-success.show { display: block; }
+  .success-icon {
+    width: 48px; height: 48px;
+    border: 1px solid var(--plum);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 1.1rem;
+    color: var(--plum);
+  }
+  .success-title {
+    font-family: 'IBM Plex Serif', Georgia, serif;
+    font-weight: 100;
+    font-size: 1.4rem;
+    color: var(--plum);
+    margin-bottom: 0.7rem;
+  }
+  .success-body { font-size: 0.85rem; color: var(--mauve); line-height: 1.7; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid rgba(232,220,207,0.07);
+    padding: 4rem 6rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  .footer-logo {
+    font-family: 'IBM Plex Serif', Georgia, serif;
+    font-weight: 100;
+    font-size: 0.85rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--cream);
+    margin-bottom: 0.65rem;
+  }
+  .footer-tagline { font-size: 0.72rem; color: var(--mauve); font-style: italic; opacity: 0.7; }
+  .footer-nav { display: flex; flex-direction: column; gap: 0.7rem; align-items: center; }
+  .footer-nav a {
+    font-size: 0.57rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--mauve);
+    opacity: 0.65;
+    text-decoration: none;
+    transition: opacity 0.2s, color 0.2s;
+  }
+  .footer-nav a:hover { opacity: 1; color: var(--cream); }
+  .footer-right { text-align: right; }
+  .footer-social { display: flex; gap: 1.5rem; justify-content: flex-end; margin-bottom: 0.85rem; }
+  .footer-social a {
+    font-size: 0.57rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mauve);
+    opacity: 0.65;
+    text-decoration: none;
+    transition: opacity 0.2s, color 0.2s;
+  }
+  .footer-social a:hover { opacity: 1; color: var(--cream); }
+  .footer-copy { font-size: 0.55rem; color: var(--mauve); opacity: 0.35; letter-spacing: 0.1em; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none !important; }
+    .nav-cta   { display: none !important; }
+    .hamburger { display: flex; }
+
+    .hero-content { padding: 7rem 1.75rem 6rem; }
+    .hero-bottom-bar { display: none; }
+
+    #services { padding: 5rem 1.75rem; }
+    .services-header { grid-template-columns: 1fr; gap: 1.25rem; }
+    .services-grid { grid-template-columns: 1fr; }
+
+    #clients { padding: 5rem 1.75rem; }
+    .clients-grid { grid-template-columns: 1fr 1fr; }
+
+    #testimony { padding: 5rem 1.75rem; }
+    .testimony-inner { grid-template-columns: 1fr; }
+
+    #connect { grid-template-columns: 1fr; }
+    .connect-left  { padding: 4rem 1.75rem; }
+    .connect-right { padding: 4rem 1.75rem; }
+    .form-row { grid-template-columns: 1fr; gap: 0; }
+
+    footer { grid-template-columns: 1fr; text-align: center; padding: 3rem 1.75rem; }
+    .footer-right { text-align: center; }
+    .footer-social { justify-content: center; }
+    .footer-nav { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav" class="over-hero">
+  <a href="#home" class="nav-logo" onclick="smoothTo('home')">
+    <svg class="nav-logo-svg" viewBox="0 0 130 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <text x="0" y="30" font-family="'IBM Plex Serif', Georgia, serif" font-size="14" font-weight="100" letter-spacing="6" fill="currentColor">MPR</text>
+      <line x1="0" y1="36" x2="130" y2="36" stroke="currentColor" stroke-width="0.6" opacity="0.4"/>
+      <text x="0" y="44" font-family="'IBM Plex Serif', Georgia, serif" font-size="6" font-weight="100" letter-spacing="5" fill="currentColor" opacity="0.7">MANEJAH PR</text>
+    </svg>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#services"  onclick="smoothTo('services')">Services</a></li>
+    <li><a href="#clients"   onclick="smoothTo('clients')">Clients</a></li>
+    <li><a href="#testimony" onclick="smoothTo('testimony')">Testimony</a></li>
+  </ul>
+
+  <a href="#connect" class="nav-cta" onclick="smoothTo('connect')">Let's Connect</a>
+
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services"  onclick="closeMobileNav('services')">Services</a>
+  <a href="#clients"   onclick="closeMobileNav('clients')">Clients</a>
+  <a href="#testimony" onclick="closeMobileNav('testimony')">Testimony</a>
+  <a href="#connect"   onclick="closeMobileNav('connect')">Connect</a>
+  <p class="mobile-menu-footer">manejah@manejahpr.com</p>
+</div>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-overlay-gradient"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Brand Storytelling · Content Strategy · PR</p>
+    <h1 class="hero-headline">
+      Helping small<br>
+      businesses tell<br>
+      their <em>unique story</em>
+    </h1>
+    <p class="hero-sub">
+      Manejah PR crafts authentic brand narratives that capture the attention of media, customers, and influencers — keeping your story fresh, compelling, and unmistakably yours.
+    </p>
+    <div class="hero-actions">
+      <a href="#services" class="btn-primary" onclick="smoothTo('services')">Our Services</a>
+      <a href="#connect" class="btn-ghost-light" onclick="smoothTo('connect')">Start a Conversation</a>
+    </div>
+  </div>
+  <div class="hero-bottom-bar">
+    <div class="hero-bar-item">
+      <span class="hero-bar-num">10+</span>
+      <span class="hero-bar-label">Years of<br>Experience</span>
+    </div>
+    <div class="hero-bar-item">
+      <span class="hero-bar-num">50+</span>
+      <span class="hero-bar-label">Clients<br>Served</span>
+    </div>
+    <div class="hero-bar-item">
+      <span class="hero-bar-num">100%</span>
+      <span class="hero-bar-label">Dedicated to<br>Your Story</span>
+    </div>
+    <div class="hero-bar-item">
+      <span class="hero-bar-num">∞</span>
+      <span class="hero-bar-label">Fresh Ideas<br>Delivered</span>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span>Brand Writing</span><span class="dot">·</span>
+    <span>Content Strategy</span><span class="dot">·</span>
+    <span>Social Media</span><span class="dot">·</span>
+    <span>Public Relations</span><span class="dot">·</span>
+    <span>Storytelling</span><span class="dot">·</span>
+    <span>Brand Identity</span><span class="dot">·</span>
+    <span>Media Outreach</span><span class="dot">·</span>
+    <span>Influencer Engagement</span><span class="dot">·</span>
+    <span>Brand Writing</span><span class="dot">·</span>
+    <span>Content Strategy</span><span class="dot">·</span>
+    <span>Social Media</span><span class="dot">·</span>
+    <span>Public Relations</span><span class="dot">·</span>
+    <span>Storytelling</span><span class="dot">·</span>
+    <span>Brand Identity</span><span class="dot">·</span>
+    <span>Media Outreach</span><span class="dot">·</span>
+    <span>Influencer Engagement</span><span class="dot">·</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header">
+    <div>
+      <p class="section-label reveal">What We Do</p>
+      <h2 class="section-headline reveal">
+        Strategic<br>services for<br><em>real impact</em>
+      </h2>
+    </div>
+    <p class="services-intro reveal">
+      MPR starts every project by assessing your digital landscape — what you're doing, what you're not, and what story matters most. We build strategies and KPIs that help you reach and deeply engage your audience.
+    </p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <p class="service-num">01</p>
+      <div class="service-icon"></div>
+      <h3 class="service-title">Brand Writing</h3>
+      <p class="service-desc">Elevating your authentic personality within every blog post, caption, and article — weaving stories that build a genuine emotional connection with your customer.</p>
+    </div>
+    <div class="service-card reveal">
+      <p class="service-num">02</p>
+      <div class="service-icon"></div>
+      <h3 class="service-title">Content Strategy</h3>
+      <p class="service-desc">Fresh content creation, strategic planning, and distribution across all recommended platforms — static posts, video, and ongoing engagement toward your goals.</p>
+    </div>
+    <div class="service-card reveal">
+      <p class="service-num">03</p>
+      <div class="service-icon"></div>
+      <h3 class="service-title">Brand Assessment</h3>
+      <p class="service-desc">A comprehensive audit of your digital presence to surface gaps, opportunities, and the story that will resonate most powerfully with your target audience.</p>
+    </div>
+    <div class="service-card reveal">
+      <p class="service-num">04</p>
+      <div class="service-icon"></div>
+      <h3 class="service-title">Media Relations</h3>
+      <p class="service-desc">Strategic outreach to publications and press that matter to your brand — building relationships that put your story in front of the right eyes at the right moment.</p>
+    </div>
+    <div class="service-card reveal">
+      <p class="service-num">05</p>
+      <div class="service-icon"></div>
+      <h3 class="service-title">Influencer Strategy</h3>
+      <p class="service-desc">Identifying and cultivating relationships with influencers whose audiences align with your brand values — authentic partnerships that expand your reach organically.</p>
+    </div>
+    <div class="service-card reveal">
+      <p class="service-num">06</p>
+      <div class="service-icon"></div>
+      <h3 class="service-title">Voice & Tone Guide</h3>
+      <p class="service-desc">A bespoke document defining your brand's communication style — ensuring consistency, authenticity, and emotional resonance across every channel and piece of content.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section id="clients">
+  <div class="clients-header">
+    <p class="section-label">Proud to Work With</p>
+    <h2 class="section-headline">Our clients,<br>their <em>stories</em></h2>
+  </div>
+  <div class="clients-grid">
+    <div class="client-card reveal">
+      <p class="client-industry">Consulting</p>
+      <h3 class="client-name">Tremont Consulting Group</h3>
+      <p class="client-desc">Strategy and business advisory services for growing organizations.</p>
+      <span class="client-tag">Brand Writing</span>
+    </div>
+    <div class="client-card reveal">
+      <p class="client-industry">Lifestyle & Wellness</p>
+      <h3 class="client-name">Leslie Fine</h3>
+      <p class="client-desc">Personal brand building for wellness and lifestyle professionals.</p>
+      <span class="client-tag">Content Strategy</span>
+    </div>
+    <div class="client-card reveal">
+      <p class="client-industry">Fashion & Style</p>
+      <h3 class="client-name">Jessica Delaney</h3>
+      <p class="client-desc">Editorial content and brand presence for fashion-forward creatives.</p>
+      <span class="client-tag">Social Media</span>
+    </div>
+    <div class="client-card reveal">
+      <p class="client-industry">Real Estate</p>
+      <h3 class="client-name">Boutique Realty Co.</h3>
+      <p class="client-desc">Compelling property narratives and community storytelling.</p>
+      <span class="client-tag">Brand Writing</span>
+    </div>
+    <div class="client-card reveal">
+      <p class="client-industry">Food & Beverage</p>
+      <h3 class="client-name">Local Harvest Kitchen</h3>
+      <p class="client-desc">Farm-to-table restaurant brand narrative and social presence.</p>
+      <span class="client-tag">Content Strategy</span>
+    </div>
+    <div class="client-card reveal">
+      <p class="client-industry">Health & Beauty</p>
+      <h3 class="client-name">Radiance Studio</h3>
+      <p class="client-desc">Luxury beauty brand storytelling across digital platforms.</p>
+      <span class="client-tag">Media Relations</span>
+    </div>
+    <div class="client-card reveal">
+      <p class="client-industry">Professional Services</p>
+      <h3 class="client-name">Meridian Law Group</h3>
+      <p class="client-desc">Thought leadership content and professional brand positioning.</p>
+      <span class="client-tag">Brand Assessment</span>
+    </div>
+    <div class="client-card reveal">
+      <p class="client-industry">Nonprofit</p>
+      <h3 class="client-name">CRRC Community</h3>
+      <p class="client-desc">Mission-driven storytelling for community impact organizations.</p>
+      <span class="client-tag">Content Strategy</span>
+    </div>
+  </div>
+  <div style="text-align:center; margin-top:3.5rem;">
+    <a href="#connect" class="btn-ghost-light" onclick="smoothTo('connect')" style="border-color:rgba(232,220,207,0.45); color:var(--cream);">Become a Client</a>
+  </div>
+</section>
+
+<!-- TESTIMONY -->
+<section id="testimony">
+  <div class="testimony-header">
+    <p class="section-label reveal">In Their Words</p>
+    <h2 class="section-headline reveal">What our<br><em>clients say</em></h2>
+  </div>
+  <div class="testimony-inner">
+    <div class="testimony-featured reveal">
+      <p class="testimony-text">
+        I think the strongest recommendation I can give to someone is to refer them to my clients — and whenever a client of mine needs a marketing professional who is knowledgeable, creative, and responsive, I always introduce them to Manejah. She is great to work with and really takes the time to understand her client's business. She did such a great job for my clients, I hired her for mine!
+      </p>
+      <div class="testimony-cite">
+        <div class="testimony-cite-line"></div>
+        <span class="testimony-author">Tim Kaelin · Tremont Consulting Group</span>
+      </div>
+    </div>
+    <div class="testimony-stack">
+      <div class="testimony-mini reveal">
+        <p class="testimony-mini-text">"Manejah has an incredible ability to capture your brand's voice and translate it into content that truly resonates with your audience."</p>
+        <span class="testimony-mini-author">Sarah M. · Lifestyle Brand Founder</span>
+      </div>
+      <div class="testimony-mini reveal">
+        <p class="testimony-mini-text">"Working with MPR transformed how we communicate with our customers. Our engagement tripled within the first three months."</p>
+        <span class="testimony-mini-author">David R. · Restaurant Owner</span>
+      </div>
+      <div class="testimony-mini reveal">
+        <p class="testimony-mini-text">"The strategy Manejah developed gave us a clear, consistent voice that we've maintained long after the engagement ended."</p>
+        <span class="testimony-mini-author">Lisa T. · Creative Studio Director</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONNECT -->
+<section id="connect">
+  <div class="connect-left">
+    <p class="section-label">Get in Touch</p>
+    <h2 class="connect-headline">Let's tell your<br><em>story together</em></h2>
+    <p class="connect-body">
+      Ready to elevate your brand narrative? Let's explore how Manejah PR can help your business connect with the audiences that matter most.
+    </p>
+    <div class="connect-details">
+      <div class="connect-detail">
+        <div class="connect-detail-icon"></div>
+        <span>manejah@manejahpr.com</span>
+      </div>
+      <div class="connect-detail">
+        <div class="connect-detail-icon"></div>
+        <span>917.921.7925</span>
+      </div>
+      <div class="connect-detail">
+        <div class="connect-detail-icon"></div>
+        <span>@manejahpr on Instagram</span>
+      </div>
+    </div>
+  </div>
+  <div class="connect-right">
+    <div id="contactForm">
+      <p class="section-label">Send a Message</p>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">First Name</label>
+          <input type="text" class="form-input" placeholder="Jane">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Last Name</label>
+          <input type="text" class="form-input" placeholder="Smith">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-input" placeholder="jane@yourbrand.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Your Brand / Company</label>
+        <input type="text" class="form-input" placeholder="Company Name">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tell Us About Your Brand</label>
+        <textarea class="form-input" rows="4" placeholder="What's your story?"></textarea>
+      </div>
+      <button class="btn-primary" onclick="submitForm()" style="width:100%; padding:1.1rem; font-size:0.68rem; margin-top:0.5rem;">
+        Send Message
+      </button>
+    </div>
+    <div class="form-success" id="formSuccess">
+      <div class="success-icon">✓</div>
+      <p class="success-title">Thank you for reaching out</p>
+      <p class="success-body">We'll be in touch shortly to discuss how Manejah PR can help tell your brand's story.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <p class="footer-logo">Manejah PR</p>
+    <p class="footer-tagline">Helping small businesses tell their unique story.</p>
+  </div>
+  <nav class="footer-nav">
+    <a href="#services"  onclick="smoothTo('services')">Services</a>
+    <a href="#clients"   onclick="smoothTo('clients')">Clients</a>
+    <a href="#testimony" onclick="smoothTo('testimony')">Testimony</a>
+    <a href="#connect"   onclick="smoothTo('connect')">Connect</a>
+  </nav>
+  <div class="footer-right">
+    <div class="footer-social">
+      <a href="https://www.instagram.com/manejahpr/" target="_blank">Instagram</a>
+      <a href="https://www.linkedin.com/company/manejahpr/" target="_blank">LinkedIn</a>
+    </div>
+    <p class="footer-copy">© 2025 Manejah PR · All rights reserved</p>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('mainNav');
+  function updateNav() {
+    const past = window.scrollY > document.getElementById('home').offsetHeight - 80;
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+    nav.classList.toggle('over-hero', !past);
+  }
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+
+  function smoothTo(id) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function toggleMenu() {
+    const btn  = document.getElementById('hamburger');
+    const menu = document.getElementById('mobileMenu');
+    const open = menu.classList.toggle('open');
+    btn.classList.toggle('active', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+
+  function closeMobileNav(id) {
+    document.getElementById('hamburger').classList.remove('active');
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(() => smoothTo(id), 60);
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -36px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  document.querySelectorAll('.services-grid .service-card').forEach((el, i) => { el.style.transitionDelay = `${(i % 3) * 0.1}s`; });
+  document.querySelectorAll('.clients-grid .client-card').forEach((el, i) => { el.style.transitionDelay = `${(i % 4) * 0.08}s`; });
+
+  function submitForm() {
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('formSuccess').classList.add('show');
+  }
+</script>
+</body>
+</html>
