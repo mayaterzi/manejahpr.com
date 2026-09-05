@@ -414,29 +414,55 @@
     font-weight: 300;
   }
 
-  /* ── CLIENTS (dark) ── */
-  #clients {
-    background: var(--plum);
-    padding: 8rem 6rem;
-    position: relative;
-    overflow: hidden;
-  }
-  #clients::before {
-    content: 'CLIENTS';
-    position: absolute;
-    top: -1rem; right: -1rem;
-    font-family: 'IBM Plex Serif', Georgia, serif;
-    font-weight: 100;
-    font-size: 18rem;
-    color: rgba(255,255,255,0.03);
-    letter-spacing: -0.05em;
-    pointer-events: none;
-    line-height: 1;
-  }
-  .clients-header { margin-bottom: 4.5rem; }
-  .clients-header .section-label { color: var(--mauve); }
-  .clients-header .section-headline { color: var(--cream); }
-  .clients-header .section-headline em { color: rgba(232,220,207,0.6); }
+/* ── CLIENTS (dark) ── */
+#clients {
+  background: var(--plum);
+  padding: 8rem 6rem;
+  position: relative;
+  overflow: hidden;
+}
+
+#clients::before {
+  content: 'CLIENTS';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  text-align: right;
+  font-family: 'IBM Plex Serif', Georgia, serif;
+  font-weight: 100;
+  font-size: clamp(6rem, 17vw, 18rem);
+  color: rgba(255,255,255,0.03);
+  letter-spacing: -0.05em;
+  pointer-events: none;
+  line-height: 0.9;
+  white-space: nowrap;
+  z-index: 0;
+}
+
+.clients-header,
+.clients-grid,
+#clients > div:last-child {
+  position: relative;
+  z-index: 1;
+}
+
+.clients-header {
+  margin-bottom: 4.5rem;
+}
+
+.clients-header .section-label {
+  color: var(--mauve);
+}
+
+.clients-header .section-headline {
+  color: var(--cream);
+}
+
+.clients-header .section-headline em {
+  color: rgba(232,220,207,0.6);
+}
+
 .clients-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -475,76 +501,127 @@
   transform: scale(1.04);
 }
 
-  /* ── TESTIMONIES (light) ── */
-  #testimonies {
-    background: var(--cream-light);
-    padding: 8rem 6rem;
-  }
-  #testimonies .section-headline { color: var(--plum); }
-  #testimonies .section-headline em { color: var(--slate); }
-  .testimonies-header { margin-bottom: 4rem; }
-  .testimonies-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3.5rem;
-  }
-  .testimonies-featured {
-    background: var(--white);
-    padding: 4rem;
-    position: relative;
-  }
-  .testimonies-featured::before {
-    content: '\201C';
-    position: absolute;
-    top: 1rem; left: 2.5rem;
-    font-family: 'IBM Plex Serif', Georgia, serif;
-    font-size: 7rem;
-    color: var(--cream);
-    line-height: 1;
-    font-weight: 100;
-  }
-  .testimonies-text {
-    font-family: 'IBM Plex Serif', Georgia, serif;
-    font-weight: 100;
-    font-style: italic;
-    font-size: 1.2rem;
-    line-height: 1.8;
-    color: var(--plum);
-    margin-top: 2.5rem;
-    margin-bottom: 2rem;
-  }
-  .testimonies-cite { display: flex; align-items: center; gap: 1rem; }
-  .testimonies-cite-line { width: 28px; height: 1px; background: var(--mauve); }
-  .testimonies-author {
-    font-size: 0.8rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--mauve);
-  }
-  .testimonies-stack { display: flex; flex-direction: column; gap: 2px; }
-  .testimonies-mini {
-    background: var(--white);
-    padding: 2rem 2.5rem;
-    border-left: 3px solid var(--plum);
-    transition: border-color 0.3s;
-  }
-  .testimonies-mini:hover { border-color: var(--slate); }
-  .testimonies-mini-text {
-    font-family: 'IBM Plex Serif', Georgia, serif;
-    font-weight: 100;
-    font-style: italic;
-    font-size: 1.05rem;
-    line-height: 1.7;
-    color: var(--plum);
-    margin-bottom: 0.85rem;
-  }
-  .testimonies-mini-author {
-    font-size: 0.75rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--mauve);
-  }
 
+/* ── TESTIMONIES ── */
+#testimonies {
+  background: var(--cream-light);
+  padding: 8rem 6rem;
+}
+
+#testimonies .section-headline {
+  color: var(--plum);
+}
+
+#testimonies .section-headline em {
+  color: var(--slate);
+}
+
+.testimonies-header {
+  margin-bottom: 4rem;
+}
+
+.testimonies-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5rem;
+  align-items: stretch;
+}
+
+/* Make ALL testimonial cards share the same visual language */
+.testimonies-featured,
+.testimonies-mini {
+  background: var(--white);
+  border: 1px solid rgba(81,64,75,0.08);
+  border-left: 3px solid var(--plum);
+  padding: 2.75rem 3rem;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.testimonies-featured {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* quotation mark */
+.testimonies-featured::before {
+  content: '\201C';
+  position: absolute;
+  top: 0.5rem;
+  left: 2rem;
+  font-family: 'IBM Plex Serif', Georgia, serif;
+  font-size: 6rem;
+  color: var(--cream);
+  line-height: 1;
+  font-weight: 100;
+  pointer-events: none;
+}
+
+.testimonies-text,
+.testimonies-mini-text {
+  font-family: 'IBM Plex Serif', Georgia, serif;
+  font-weight: 100;
+  font-style: italic;
+  color: var(--plum);
+}
+
+/* Featured testimonial */
+.testimonies-text {
+  font-size: 1.12rem;
+  line-height: 1.75;
+  margin: 1.5rem 0 2rem;
+}
+
+/* Smaller testimonials */
+.testimonies-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.testimonies-mini {
+  flex: 1;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.testimonies-mini:hover {
+  border-left-color: var(--slate);
+  background: #fff;
+}
+
+.testimonies-mini-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin: 0 0 1rem;
+}
+
+.testimonies-cite {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.testimonies-cite-line {
+  width: 28px;
+  height: 1px;
+  background: var(--mauve);
+  flex-shrink: 0;
+}
+
+.testimonies-author,
+.testimonies-mini-author {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mauve);
+  line-height: 1.5;
+}
+
+.testimonies-mini-author {
+  display: block;
+}
   /* ── CONNECT ── */
   #connect {
     display: grid;
@@ -755,11 +832,33 @@
     .services-header { grid-template-columns: 1fr; gap: 1.25rem; }
     .services-grid { grid-template-columns: 1fr; }
 
-    #clients { padding: 5rem 1.75rem; }
-    .clients-grid { grid-template-columns: 1fr 1fr; }
+    #clients {
+  padding: 5rem 1.75rem;
+}
 
-    #testimonies { padding: 5rem 1.75rem; }
-    .testimonies-inner { grid-template-columns: 1fr; }
+#clients::before {
+  font-size: clamp(5rem, 24vw, 10rem);
+  top: 0.5rem;
+  right: 0;
+}
+
+.clients-grid {
+  grid-template-columns: 1fr 1fr;
+}
+
+#testimony {
+  padding: 5rem 1.75rem;
+}
+
+.testimony-inner {
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.testimony-featured,
+.testimony-mini {
+  padding: 2.25rem 2rem;
+}
 
     #connect { grid-template-columns: 1fr; }
     .connect-left  { padding: 4rem 1.75rem; min-height: 420px; }
@@ -896,10 +995,12 @@
 
 <!-- CLIENTS -->
 <section id="clients">
-  <div class="clients-header">
-    <p class="section-label">Proud to Work With</p>
-    <h2 class="section-headline">Our clients,<br>their <em>stories</em></h2>
-  <div class="clients-grid">
+<div class="clients-header">
+  <p class="section-label">Proud to Work With</p>
+  <h2 class="section-headline">Our clients,<br>their <em>stories</em></h2>
+</div>
+
+<div class="clients-grid">
 
   <div class="client-card reveal">
     <img src="makkas.png" alt="Makkas Workroom">
