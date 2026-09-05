@@ -520,14 +520,15 @@
   margin-bottom: 4rem;
 }
 
+/* Even 2x2 grid on desktop */
 .testimonies-inner {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3.5rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
   align-items: stretch;
 }
 
-/* Make ALL testimonial cards share the same visual language */
+/* Make every testimony the exact same visual style */
 .testimonies-featured,
 .testimonies-mini {
   background: var(--white);
@@ -536,15 +537,21 @@
   padding: 2.75rem 3rem;
   position: relative;
   box-sizing: border-box;
-}
-
-.testimonies-featured {
+  min-width: 0;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+  transition: border-color 0.3s, background 0.3s;
 }
 
-/* quotation mark */
+.testimonies-featured:hover,
+.testimonies-mini:hover {
+  border-left-color: var(--slate);
+  background: #fff;
+}
+
+/* Quote mark */
 .testimonies-featured::before {
   content: '\201C';
   position: absolute;
@@ -558,6 +565,7 @@
   pointer-events: none;
 }
 
+/* Text */
 .testimonies-text,
 .testimonies-mini-text {
   font-family: 'IBM Plex Serif', Georgia, serif;
@@ -566,36 +574,19 @@
   color: var(--plum);
 }
 
-/* Featured testimonial */
 .testimonies-text {
   font-size: 1.12rem;
   line-height: 1.75;
   margin: 1.5rem 0 2rem;
 }
 
-/* Smaller testimonials */
-.testimonies-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.testimonies-mini {
-  flex: 1;
-  transition: border-color 0.3s, background 0.3s;
-}
-
-.testimonies-mini:hover {
-  border-left-color: var(--slate);
-  background: #fff;
-}
-
 .testimonies-mini-text {
-  font-size: 1rem;
+  font-size: 1.05rem;
   line-height: 1.7;
-  margin: 0 0 1rem;
+  margin: 0 0 1.5rem;
 }
 
+/* Author */
 .testimonies-cite {
   display: flex;
   align-items: center;
@@ -611,6 +602,17 @@
 }
 
 .testimonies-author,
+.testimonies-mini-author {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mauve);
+  line-height: 1.5;
+}
+
+.testimonies-mini-author {
+  display: block;
+}
 .testimonies-mini-author {
   font-size: 0.72rem;
   letter-spacing: 0.14em;
@@ -846,17 +848,17 @@
   grid-template-columns: 1fr 1fr;
 }
 
-#testimony {
+#testimonies {
   padding: 5rem 1.75rem;
 }
 
-.testimony-inner {
+.testimonies-inner {
   grid-template-columns: 1fr;
   gap: 1.5rem;
 }
 
-.testimony-featured,
-.testimony-mini {
+.testimonies-featured,
+.testimonies-mini {
   padding: 2.25rem 2rem;
 }
 
@@ -1044,30 +1046,41 @@
     <p class="section-label reveal">In Their Words</p>
     <h2 class="section-headline reveal">What our<br><em>clients say</em></h2>
   </div>
+
   <div class="testimonies-inner">
+
     <div class="testimonies-featured reveal">
       <p class="testimonies-text">
         I think the strongest recommendation I can give to someone is to refer them to my clients — and whenever a client of mine needs a marketing professional who is knowledgeable, creative, and responsive, I always introduce them to Manejah. She is great to work with and really takes the time to understand her client's business. She did such a great job for my clients, I hired her for mine!
       </p>
+
       <div class="testimonies-cite">
         <div class="testimonies-cite-line"></div>
         <span class="testimonies-author">Tim Kaelin · Tremont Consulting Group</span>
       </div>
     </div>
-    <div class="testimonies-stack">
-      <div class="testimonies-mini reveal">
-        <p class="testimonies-mini-text">"We have been working with Manejah PR since 2019, and will continue to work with her for many years to come. Manejah has an attention to detail that is rivaled by none, and is a fantastic representative for our company. She is hardworking, kind, thoughtful, and always brings a positive attitude to everything she does. Thanks to the promotional work she has done for us we have seen tremendous growth in our business. She is a joy to work with, and we look forward to future collaborations with Manejah PR."</p>
-        <span class="testimonies-mini-author">Manny Makkas · Makkas Workroom</span>
-      </div>
-      <div class="testimonies-mini reveal">
-        <p class="testimonies-mini-text">"Working with Manejah over the last two years has been an absolute pleasure. She has helped us to develop our social media presence and planning as well as writing for our monthly blog and newsletter. Most recently, Manejah worked with us in rolling out a large rebrand and new website launch. Manejah really took the time to understand our brand voice and made thoughtful recommendations. She comes up with unique and creative ideas and has been integral in our outreach and growth. Manejah is lovely to communicate with, and I'm thankful to have her on our team!"</p>
-        <span class="testimonies-mini-author">Rachel Reider · Reider + Co</span>
-      </div>
-      <div class="testimonies-mini reveal">
-        <p class="testimonies-mini-text">"Working with Manejah PR is an absolute pleasure! They have helped us to refine our brand voice, define our signature look, better understand our marketplace and increase our visibility and engagement. Their knowledgeable experience in the digital sphere and collaborative approach has guided us through a crucial transition period in our online marketing with confidence knowing we have the support of a trusted partner."</p>
-        <span class="testimonies-mini-author">Jody Paterson · Berkshire Hathaway HomeServices Island Properties</span>
-      </div>
+
+    <div class="testimonies-mini reveal">
+      <p class="testimonies-mini-text">
+        "We have been working with Manejah PR since 2019, and will continue to work with her for many years to come. Manejah has an attention to detail that is rivaled by none, and is a fantastic representative for our company. She is hardworking, kind, thoughtful, and always brings a positive attitude to everything she does. Thanks to the promotional work she has done for us we have seen tremendous growth in our business. She is a joy to work with, and we look forward to future collaborations with Manejah PR."
+      </p>
+      <span class="testimonies-mini-author">Manny Makkas · Makkas Workroom</span>
     </div>
+
+    <div class="testimonies-mini reveal">
+      <p class="testimonies-mini-text">
+        "Working with Manejah over the last two years has been an absolute pleasure. She has helped us to develop our social media presence and planning as well as writing for our monthly blog and newsletter. Most recently, Manejah worked with us in rolling out a large rebrand and new website launch. Manejah really took the time to understand our brand voice and made thoughtful recommendations. She comes up with unique and creative ideas and has been integral in our outreach and growth. Manejah is lovely to communicate with, and I'm thankful to have her on our team!"
+      </p>
+      <span class="testimonies-mini-author">Rachel Reider · Reider + Co</span>
+    </div>
+
+    <div class="testimonies-mini reveal">
+      <p class="testimonies-mini-text">
+        "Working with Manejah PR is an absolute pleasure! They have helped us to refine our brand voice, define our signature look, better understand our marketplace and increase our visibility and engagement. Their knowledgeable experience in the digital sphere and collaborative approach has guided us through a crucial transition period in our online marketing with confidence knowing we have the support of a trusted partner."
+      </p>
+      <span class="testimonies-mini-author">Jody Paterson · Berkshire Hathaway HomeServices Island Properties</span>
+    </div>
+
   </div>
 </section>
 
