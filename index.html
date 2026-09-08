@@ -626,37 +626,41 @@
   display: block;
 }
   /* ── CONNECT ── */
-  #connect {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 70vh;
-  }
-  .connect-left {
-    position: relative;
-    padding: 7rem 5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    overflow: hidden;
-  }
-  /* background image */
-  .connect-left-bg {
-    position: absolute;
-    inset: 0;
-    background: url('terzi1.jpg') center/cover no-repeat;
-    z-index: 0;
-  }
-  /* overlay tint — slate colour + extra darkening */
-  .connect-left-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(77,91,106,0.82);
-    z-index: 1;
-  }
-  .connect-left > *:not(.connect-left-bg):not(.connect-left-overlay) {
-    position: relative;
-    z-index: 2;
-  }
+#connect {
+  min-height: 70vh;
+}
+
+.connect-left {
+  position: relative;
+  padding: 7rem 6rem;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* background image */
+.connect-left-bg {
+  position: absolute;
+  inset: 0;
+  background: url('terzi1.jpg') center/cover no-repeat;
+  z-index: 0;
+}
+
+/* overlay tint */
+.connect-left-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(77,91,106,0.82);
+  z-index: 1;
+}
+
+.connect-left > *:not(.connect-left-bg):not(.connect-left-overlay) {
+  position: relative;
+  z-index: 2;
+}
   .connect-left .section-label { color: rgba(232,220,207,0.55); }
   .connect-headline {
     font-family: 'IBM Plex Serif', Georgia, serif;
@@ -684,63 +688,6 @@
     color: rgba(232,220,207,0.75);
   }
   .connect-detail-icon { width: 18px; height: 1px; background: var(--mauve); opacity: 0.7; flex-shrink: 0; }
-
-  .connect-right {
-    background: var(--white);
-    padding: 7rem 5rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .form-group { margin-bottom: 1.75rem; }
-  .form-label {
-    display: block;
-    font-size: 0.65rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--mauve);
-    margin-bottom: 0.55rem;
-  }
-  .form-input {
-    width: 100%;
-    border: none;
-    border-bottom: 1px solid var(--cream);
-    padding: 0.75rem 0;
-    font-family: 'IBM Plex Serif', Georgia, serif;
-    font-size: 1rem;
-    font-weight: 300;
-    color: var(--dark);
-    background: transparent;
-    outline: none;
-    transition: border-color 0.3s;
-    -webkit-appearance: none;
-  }
-  .form-input:focus { border-color: var(--plum); }
-  .form-input::placeholder { color: rgba(140,128,135,0.4); }
-  textarea.form-input { resize: none; min-height: 90px; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-
-  .form-success { display: none; text-align: center; padding: 3rem 1rem; }
-  .form-success.show { display: block; }
-  .success-icon {
-    width: 50px; height: 50px;
-    border: 1px solid var(--plum);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1.5rem;
-    font-size: 1.2rem;
-    color: var(--plum);
-  }
-  .success-title {
-    font-family: 'IBM Plex Serif', Georgia, serif;
-    font-weight: 100;
-    font-size: 1.5rem;
-    color: var(--plum);
-    margin-bottom: 0.7rem;
-  }
-  .success-body { font-size: 0.9rem; color: var(--mauve); line-height: 1.7; }
 
   /* ── FOOTER ── */
   footer {
@@ -862,11 +809,6 @@
 .testimonies-mini {
   padding: 2.25rem 2rem;
 }
-
-    #connect { grid-template-columns: 1fr; }
-    .connect-left  { padding: 4rem 1.75rem; min-height: 420px; }
-    .connect-right { padding: 4rem 1.75rem; }
-    .form-row { grid-template-columns: 1fr; gap: 0; }
 
     footer { grid-template-columns: 1fr; text-align: center; padding: 3rem 1.75rem; }
     .footer-right { text-align: center; }
@@ -1036,6 +978,9 @@
   <div class="client-card reveal">
     <img src="wco.png" alt="Wellen Construction">
   </div>
+
+</div>
+  
   <div style="text-align:center; margin-top:3.5rem;">
     <a href="#connect" class="btn-ghost-cream" onclick="smoothTo('connect')">Become a Client</a>
   </div>
@@ -1106,41 +1051,7 @@
       </div>
     </div>
   </div>
-  <div class="connect-right">
-    <div id="contactForm">
-      <p class="section-label">Send a Message</p>
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">First Name</label>
-          <input type="text" class="form-input" placeholder="Jane">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Last Name</label>
-          <input type="text" class="form-input" placeholder="Smith">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Email Address</label>
-        <input type="email" class="form-input" placeholder="jane@yourbrand.com">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Your Brand / Company</label>
-        <input type="text" class="form-input" placeholder="Company Name">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Tell Us About Your Brand</label>
-        <textarea class="form-input" rows="4" placeholder="What's your story?"></textarea>
-      </div>
-      <button class="btn-primary" onclick="submitForm()" style="width:100%; padding:1.1rem; font-size:0.72rem; margin-top:0.5rem;">
-        Send Message
-      </button>
-    </div>
-    <div class="form-success" id="formSuccess">
-      <div class="success-icon">✓</div>
-      <p class="success-title">Thank you for reaching out</p>
-      <p class="success-body">We'll be in touch shortly to discuss how Manejah PR can help tell your brand's story.</p>
-    </div>
-  </div>
+
 </section>
 
 <!-- FOOTER -->
@@ -1204,10 +1115,6 @@
     el.style.transitionDelay = `${(i % 4) * 0.08}s`;
   });
 
-  function submitForm() {
-    document.getElementById('contactForm').style.display = 'none';
-    document.getElementById('formSuccess').classList.add('show');
-  }
 </script>
 </body>
 </html>
