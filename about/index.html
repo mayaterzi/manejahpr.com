@@ -1,1 +1,1249 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>About Manejah | Manejah PR</title>
+  <meta name="description" content="Meet Manejah Terzi, founder of Manejah PR. Learn about her approach to public relations, brand storytelling, and creative communications.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,100;0,300;1,100;1,300&display=swap" rel="stylesheet">
+
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+
+  <style>
+    :root {
+      --plum: #51404B;
+      --slate: #4D5B6A;
+      --mauve: #8C8087;
+      --cream: #E8DCCF;
+      --cream-light: #F5F0E8;
+      --dark: #2A2025;
+      --white: #FDFBF8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      font-family: 'IBM Plex Serif', Georgia, serif;
+      font-weight: 300;
+      background: var(--white);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    /* NAVIGATION */
+
+    nav {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 4rem;
+      background: rgba(253,251,248,0.97);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(81,64,75,0.10);
+    }
+
+    .nav-logo img {
+      display: block;
+      width: auto;
+      height: 44px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a,
+    .nav-cta {
+      font-size: 0.72rem;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: color 0.25s, background 0.25s;
+    }
+
+    .nav-links a {
+      color: var(--plum);
+      opacity: 0.8;
+    }
+
+    .nav-links a:hover,
+    .nav-links a[aria-current="page"] {
+      opacity: 1;
+      color: var(--slate);
+    }
+
+    .nav-cta {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      color: var(--white);
+      background: var(--plum);
+      border: 1px solid var(--plum);
+      white-space: nowrap;
+    }
+
+    .nav-cta:hover {
+      background: var(--slate);
+      border-color: var(--slate);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      padding: 5px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      z-index: 202;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--plum);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .hamburger.active span:first-child {
+      transform: translateY(6.5px) rotate(45deg);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:last-child {
+      transform: translateY(-6.5px) rotate(-45deg);
+    }
+
+    .mobile-menu {
+      display: none;
+    }
+
+    /* TYPOGRAPHY */
+
+    .eyebrow,
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 300;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--mauve);
+    }
+
+    .section-label {
+      margin-bottom: 1.4rem;
+    }
+
+    .display-heading {
+      font-size: clamp(3rem, 5.5vw, 6rem);
+      font-weight: 100;
+      line-height: 1.04;
+      letter-spacing: -0.035em;
+    }
+
+    .display-heading em {
+      font-weight: 100;
+      font-style: italic;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* INTRODUCTION */
+
+    .about-hero {
+      padding: 11rem 6rem 6rem;
+      background: var(--cream-light);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-hero::before {
+      content: "M";
+      position: absolute;
+      top: 3rem;
+      right: 2rem;
+      font-size: clamp(16rem, 34vw, 34rem);
+      font-weight: 100;
+      line-height: 1;
+      color: rgba(81,64,75,0.035);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .hero-copy {
+      padding: 1.5rem 0;
+    }
+
+    .hero-copy .eyebrow {
+      margin-bottom: 2rem;
+      animation: fadeUp 0.8s 0.1s both;
+    }
+
+    .hero-copy h1 {
+      color: var(--plum);
+      animation: fadeUp 0.9s 0.25s both;
+    }
+
+    .hero-copy h1 em {
+      color: var(--slate);
+    }
+
+    .hero-intro {
+      max-width: 500px;
+      margin-top: 2rem;
+      color: #6A5860;
+      font-size: 1.05rem;
+      line-height: 1.9;
+      animation: fadeUp 0.9s 0.4s both;
+    }
+
+    .hero-note {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 2.5rem;
+      color: var(--mauve);
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      animation: fadeUp 0.9s 0.55s both;
+    }
+
+    .hero-note::before {
+      content: "";
+      display: block;
+      width: 36px;
+      height: 1px;
+      background: var(--mauve);
+    }
+
+    /* PORTRAIT */
+
+    .hero-portrait {
+      position: relative;
+      max-width: 500px;
+      width: 100%;
+      justify-self: end;
+    }
+
+    .portrait-frame {
+      position: relative;
+      padding: 0 0 1.5rem 1.5rem;
+    }
+
+    .portrait-frame::before {
+      content: "";
+      position: absolute;
+      top: 1.5rem;
+      left: 0;
+      right: 1.5rem;
+      bottom: 0;
+      border: 1px solid rgba(81,64,75,0.35);
+    }
+
+    .portrait-frame img {
+      position: relative;
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: center;
+      background: var(--cream);
+    }
+
+    .portrait-caption {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 1rem;
+      padding-left: 1.5rem;
+      color: var(--mauve);
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    /* MOVING BRAND STRIP */
+
+    .marquee-strip {
+      background: var(--plum);
+      padding: 1rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .marquee-inner {
+      display: flex;
+      width: max-content;
+      animation: marquee 32s linear infinite;
+    }
+
+    .marquee-inner span {
+      padding: 0 2rem;
+      color: var(--cream);
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+    }
+
+    .marquee-inner .dot {
+      color: var(--mauve);
+      padding: 0;
+    }
+
+    /* STORY SECTION */
+
+    .story-section {
+      padding: 8rem 6rem;
+      background: var(--white);
+    }
+
+    .story-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 7rem;
+      align-items: start;
+    }
+
+    .story-heading {
+      position: sticky;
+      top: 130px;
+    }
+
+    .story-heading h2 {
+      color: var(--plum);
+      font-size: clamp(2.7rem, 4vw, 4.3rem);
+      font-weight: 100;
+      line-height: 1.1;
+    }
+
+    .story-heading h2 em {
+      color: var(--slate);
+    }
+
+    .story-copy p {
+      color: #6A5860;
+      font-size: 1rem;
+      line-height: 1.95;
+      margin-bottom: 1.5rem;
+    }
+
+    .story-copy p:last-child {
+      margin-bottom: 0;
+    }
+
+    .story-copy .lead {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: var(--plum);
+    }
+
+    .story-divider {
+      width: 44px;
+      height: 1px;
+      background: var(--mauve);
+      margin: 2rem 0;
+    }
+
+    /* APPROACH */
+
+    .approach-section {
+      background: var(--plum);
+      padding: 7rem 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .approach-section::before {
+      content: "CURIOSITY";
+      position: absolute;
+      top: 2rem;
+      right: -1rem;
+      font-size: clamp(4rem, 11vw, 12rem);
+      line-height: 1;
+      font-weight: 100;
+      letter-spacing: -0.06em;
+      color: rgba(255,255,255,0.035);
+      pointer-events: none;
+    }
+
+    .approach-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .approach-header {
+      max-width: 700px;
+      margin-bottom: 4rem;
+    }
+
+    .approach-header .section-label {
+      color: var(--mauve);
+    }
+
+    .approach-header h2 {
+      color: var(--cream);
+      font-size: clamp(2.7rem, 4.5vw, 4.6rem);
+      line-height: 1.12;
+      font-weight: 100;
+    }
+
+    .approach-header h2 em {
+      color: rgba(232,220,207,0.65);
+    }
+
+    .approach-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 2px;
+    }
+
+    .approach-card {
+      min-height: 230px;
+      padding: 2.5rem 2rem;
+      background: rgba(0,0,0,0.14);
+      border: 1px solid rgba(255,255,255,0.07);
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .approach-card:hover {
+      background: rgba(0,0,0,0.25);
+      border-color: rgba(232,220,207,0.22);
+    }
+
+    .approach-number {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      color: var(--mauve);
+      margin-bottom: 2rem;
+    }
+
+    .approach-card h3 {
+      font-size: 1.5rem;
+      font-weight: 100;
+      color: var(--cream);
+      margin-bottom: 1rem;
+    }
+
+    .approach-card p {
+      font-size: 0.92rem;
+      line-height: 1.8;
+      color: rgba(232,220,207,0.7);
+    }
+
+    /* PERSONAL INTERESTS */
+
+    .personal-section {
+      padding: 8rem 6rem;
+      background: var(--cream-light);
+    }
+
+    .personal-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 0.85fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .personal-copy h2 {
+      font-size: clamp(2.7rem, 4vw, 4.4rem);
+      line-height: 1.1;
+      font-weight: 100;
+      color: var(--plum);
+      margin-bottom: 2rem;
+    }
+
+    .personal-copy h2 em {
+      color: var(--slate);
+    }
+
+    .personal-copy p {
+      color: #6A5860;
+      font-size: 1rem;
+      line-height: 1.9;
+      max-width: 500px;
+    }
+
+    .personal-image {
+      position: relative;
+      padding: 1.25rem 1.25rem 0 0;
+    }
+
+    .personal-image::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 75%;
+      height: 75%;
+      border-top: 1px solid rgba(81,64,75,0.4);
+      border-right: 1px solid rgba(81,64,75,0.4);
+    }
+
+    .personal-image img {
+      position: relative;
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      background: var(--cream);
+    }
+
+    .image-caption {
+      margin-top: 1rem;
+      color: var(--mauve);
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    /* CONTACT CTA */
+
+    .contact-section {
+      padding: 7rem 2rem;
+      text-align: center;
+      background: var(--slate);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-section::before {
+      content: "";
+      position: absolute;
+      inset: 1.5rem;
+      border: 1px solid rgba(232,220,207,0.12);
+      pointer-events: none;
+    }
+
+    .contact-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-section .section-label {
+      color: rgba(232,220,207,0.65);
+    }
+
+    .contact-section h2 {
+      font-size: clamp(2.8rem, 5vw, 5rem);
+      line-height: 1.08;
+      font-weight: 100;
+      color: var(--cream);
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-section h2 em {
+      color: rgba(232,220,207,0.65);
+    }
+
+    .contact-section p {
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+      color: rgba(232,220,207,0.8);
+      font-size: 1rem;
+      line-height: 1.85;
+    }
+
+    .btn-light {
+      display: inline-block;
+      padding: 1rem 2.2rem;
+      color: var(--plum);
+      background: var(--cream);
+      border: 1px solid var(--cream);
+      text-decoration: none;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: background 0.25s, color 0.25s;
+    }
+
+    .btn-light:hover {
+      background: transparent;
+      color: var(--cream);
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 3.5rem 6rem;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 2rem;
+      align-items: center;
+      background: var(--dark);
+    }
+
+    .footer-logo {
+      font-size: 1rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-tagline {
+      font-size: 0.9rem;
+      font-style: italic;
+      color: var(--mauve);
+    }
+
+    .footer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .footer-nav a,
+    .footer-social a {
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mauve);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+
+    .footer-nav a:hover,
+    .footer-social a:hover {
+      color: var(--cream);
+    }
+
+    .footer-right {
+      text-align: right;
+    }
+
+    .footer-social {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-copy {
+      color: var(--mauve);
+      font-size: 0.7rem;
+      opacity: 0.65;
+    }
+
+    /* ANIMATIONS */
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 1050px) {
+      nav {
+        padding: 1.2rem 2rem;
+      }
+
+      .nav-links {
+        gap: 1.4rem;
+      }
+
+      .hero-inner {
+        gap: 3rem;
+      }
+
+      .about-hero,
+      .story-section,
+      .approach-section,
+      .personal-section {
+        padding-left: 3rem;
+        padding-right: 3rem;
+      }
+
+      .story-inner {
+        gap: 4rem;
+      }
+
+      footer {
+        padding-left: 3rem;
+        padding-right: 3rem;
+      }
+    }
+
+    @media (max-width: 800px) {
+      nav {
+        padding: 1rem 1.5rem;
+      }
+
+      .nav-links,
+      .nav-cta {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .mobile-menu {
+        position: fixed;
+        inset: 0;
+        z-index: 201;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0;
+        background: var(--white);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.3s, visibility 0.3s;
+      }
+
+      .mobile-menu.open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+
+      .mobile-menu a {
+        width: 100%;
+        padding: 1rem;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: clamp(1.6rem, 6vw, 2.5rem);
+        font-weight: 100;
+        letter-spacing: 0.08em;
+        color: var(--plum);
+        border-bottom: 1px solid var(--cream);
+      }
+
+      .mobile-menu a:first-child {
+        border-top: 1px solid var(--cream);
+      }
+
+      .about-hero {
+        padding: 9rem 1.75rem 4rem;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .hero-copy {
+        padding: 0;
+      }
+
+      .hero-copy h1 {
+        font-size: clamp(3.2rem, 11vw, 5rem);
+      }
+
+      .hero-portrait {
+        justify-self: center;
+        max-width: 460px;
+      }
+
+      .story-section,
+      .approach-section,
+      .personal-section {
+        padding: 5rem 1.75rem;
+      }
+
+      .story-inner,
+      .personal-inner {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .story-heading {
+        position: static;
+      }
+
+      .story-heading h2,
+      .personal-copy h2 {
+        font-size: clamp(2.7rem, 9vw, 4rem);
+      }
+
+      .approach-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+      }
+
+      .approach-card {
+        min-height: auto;
+        padding: 2rem;
+      }
+
+      .approach-number {
+        margin-bottom: 1.25rem;
+      }
+
+      .personal-image {
+        max-width: 480px;
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      .contact-section {
+        padding: 5rem 1.75rem;
+      }
+
+      footer {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 3rem 1.75rem;
+        text-align: center;
+      }
+
+      .footer-nav {
+        order: 2;
+      }
+
+      .footer-right {
+        text-align: center;
+      }
+
+      .footer-social {
+        justify-content: center;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <nav aria-label="Main navigation">
+    <a href="index.html" class="nav-logo" aria-label="Manejah PR homepage">
+      <img src="logo.svg" alt="Manejah PR">
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#clients">Clients</a></li>
+      <li><a href="index.html#testimonies">Testimonials</a></li>
+      <li><a href="about.html" aria-current="page">About</a></li>
+    </ul>
+
+    <a href="index.html#connect" class="nav-cta">Let's Connect</a>
+
+    <button class="hamburger" id="hamburger"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+      aria-controls="mobileMenu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE NAVIGATION -->
+  <div class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation" inert>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#clients">Clients</a>
+    <a href="index.html#testimonies">Testimonials</a>
+    <a href="about.html">About</a>
+    <a href="index.html#connect">Let's Connect</a>
+  </div>
+
+  <main>
+
+    <!-- INTRODUCTION -->
+    <section class="about-hero">
+      <div class="hero-inner">
+
+        <div class="hero-copy">
+          <p class="eyebrow">The Person Behind the PR</p>
+
+          <h1 class="display-heading">
+            A little about<br>
+            <em>Manejah.</em>
+          </h1>
+
+          <p class="hero-intro">
+            Good stories begin with curiosity. Great ones begin with
+            understanding what makes someone or something special.
+          </p>
+
+          <div class="hero-note">
+            Founder of Manejah PR
+          </div>
+        </div>
+
+        <div class="hero-portrait">
+          <div class="portrait-frame">
+            <!-- Replace with Manejah's primary portrait -->
+            <img
+              src="manejah-portrait-1.jpg"
+              alt="Manejah Terzi"
+              fetchpriority="high"
+            >
+          </div>
+
+          <div class="portrait-caption">
+            <span>Manejah Terzi</span>
+            <span>Founder · Manejah PR</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- BRAND STORY STRIP -->
+    <div class="marquee-strip" aria-label="Manejah PR values">
+      <div class="marquee-inner" aria-hidden="true">
+        <span>Curiosity</span><span class="dot">·</span>
+        <span>Connection</span><span class="dot">·</span>
+        <span>Strategy</span><span class="dot">·</span>
+        <span>Creativity</span><span class="dot">·</span>
+        <span>Storytelling</span><span class="dot">·</span>
+        <span>Relationships</span><span class="dot">·</span>
+
+        <span>Curiosity</span><span class="dot">·</span>
+        <span>Connection</span><span class="dot">·</span>
+        <span>Strategy</span><span class="dot">·</span>
+        <span>Creativity</span><span class="dot">·</span>
+        <span>Storytelling</span><span class="dot">·</span>
+        <span>Relationships</span><span class="dot">·</span>
+      </div>
+    </div>
+
+    <!-- MANEJAH'S STORY -->
+    <section class="story-section">
+      <div class="story-inner">
+
+        <div class="story-heading reveal">
+          <p class="section-label">A Natural Curiosity</p>
+
+          <h2>
+            People first.<br>
+            Stories always.<br>
+            <em>Strategy in between.</em>
+          </h2>
+
+          <div class="story-divider"></div>
+        </div>
+
+        <div class="story-copy reveal">
+          <p class="lead">
+            Manejah Terzi is the founder of Manejah PR and someone who has
+            always been driven by curiosity, connection, and a desire to
+            understand what makes people and brands tick.
+          </p>
+
+          <p>
+            Positive, intuitive, analytical, and endlessly curious, she
+            has a knack for seeing what makes someone or something special
+            and finding the story worth telling.
+          </p>
+
+          <p>
+            With a background in journalism and more than 20 years in
+            public relations and communications, Manejah brings equal
+            parts strategy, creativity, problem-solving, and fun to the
+            work.
+          </p>
+
+          <p>
+            She believes the best ideas often come from good conversation,
+            strong relationships, and not taking yourself too seriously.
+          </p>
+
+          <div class="story-divider"></div>
+
+          <p>
+            Through Manejah PR, she works with design-driven businesses
+            and creative professionals to strengthen their voice, build
+            visibility, and communicate in a way that feels thoughtful,
+            relevant, and true to who they are.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- APPROACH -->
+    <section class="approach-section">
+      <div class="approach-inner">
+
+        <div class="approach-header reveal">
+          <p class="section-label">How She Works</p>
+
+          <h2>
+            Thoughtful strategy.<br>
+            Creative thinking.<br>
+            <em>Room for the unexpected.</em>
+          </h2>
+        </div>
+
+        <div class="approach-grid">
+
+          <article class="approach-card reveal">
+            <p class="approach-number">01 / CURIOSITY</p>
+            <h3>Ask better questions.</h3>
+            <p>
+              Understanding a brand starts with listening, asking
+              questions, and discovering what makes it distinct.
+            </p>
+          </article>
+
+          <article class="approach-card reveal">
+            <p class="approach-number">02 / CONNECTION</p>
+            <h3>Build real relationships.</h3>
+            <p>
+              Good communication is personal. Strong relationships
+              create the foundation for stories that resonate.
+            </p>
+          </article>
+
+          <article class="approach-card reveal">
+            <p class="approach-number">03 / CREATIVITY</p>
+            <h3>Find the story.</h3>
+            <p>
+              Strategy and creativity work best together, turning
+              what makes a business special into a story worth sharing.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- BEYOND THE OFFICE -->
+    <section class="personal-section">
+      <div class="personal-inner">
+
+        <div class="personal-copy reveal">
+          <p class="section-label">Beyond the Office</p>
+
+          <h2>
+            Always curious.<br>
+            <em>Especially out in the world.</em>
+          </h2>
+
+          <p>
+            Outside of work, she's happiest traveling, discovering new
+            music, and soaking up great design wherever she finds it.
+          </p>
+
+          <p style="margin-top: 1.25rem;">
+            It's a natural extension of the curiosity she brings to her
+            work: an appreciation for different perspectives, unexpected
+            details, and the stories that make people and places memorable.
+          </p>
+        </div>
+
+        <div class="personal-image reveal">
+          <!-- Optional second photo: travel, design, or a candid portrait -->
+          <img
+            src="manejah-portrait-2.jpg"
+            alt="Manejah enjoying travel and discovering new places"
+            loading="lazy"
+          >
+
+          <p class="image-caption">
+            Inspiration, wherever it finds you.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact-section" id="connect">
+      <div class="contact-inner reveal">
+        <p class="section-label">Good Things Start With a Conversation</p>
+
+        <h2>
+          Have a story<br>
+          <em>worth telling?</em>
+        </h2>
+
+        <p>
+          Let's talk about what makes your business special and how to
+          bring that story to the people who need to hear it.
+        </p>
+
+        <a href="index.html#connect" class="btn-light">
+          Let's Connect
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <p class="footer-logo">Manejah PR</p>
+      <p class="footer-tagline">
+        Helping small businesses tell their unique story.
+      </p>
+    </div>
+
+    <div class="footer-nav">
+      <a href="index.html">Home</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#clients">Clients</a>
+      <a href="about.html">About</a>
+      <a href="index.html#connect">Contact</a>
+    </div>
+
+    <div class="footer-right">
+      <div class="footer-social">
+        <a href="https://www.instagram.com/manejahpr/"
+           target="_blank" rel="noopener noreferrer">Instagram</a>
+
+        <a href="https://www.linkedin.com/company/manejahpr/"
+           target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+
+      <p class="footer-copy">
+        © 2026 Manejah PR · All rights reserved
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile navigation
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    function closeMenu() {
+      hamburger.classList.remove('active');
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      hamburger.setAttribute('aria-label', 'Open navigation menu');
+      mobileMenu.inert = true;
+      document.body.style.overflow = '';
+    }
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.contains('open');
+
+      if (isOpen) {
+        closeMenu();
+      } else {
+        hamburger.classList.add('active');
+        mobileMenu.classList.add('open');
+        hamburger.setAttribute('aria-expanded', 'true');
+        hamburger.setAttribute('aria-label', 'Close navigation menu');
+        mobileMenu.inert = false;
+        document.body.style.overflow = 'hidden';
+      }
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape') closeMenu();
+    });
+
+    // Reveal elements as they enter the viewport
+    const revealElements = document.querySelectorAll('.reveal');
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -30px 0px'
+      });
+
+      revealElements.forEach(element => observer.observe(element));
+    } else {
+      revealElements.forEach(element => element.classList.add('visible'));
+    }
+  </script>
+
+</body>
+</html>
+
