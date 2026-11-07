@@ -443,10 +443,17 @@ footer {
 
 .footer-copy { color: var(--mauve); font-size: .7rem; opacity: .65; }
 
+/* REVEAL ANIMATIONS */
 .reveal {
-  opacity: 0;
-  transform: translateY(22px);
-  transition: opacity .8s ease,transform .8s ease;
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
 }
 
 .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -565,6 +572,7 @@ footer {
   <a href="https://manejahpr.com/#clients">Clients</a>
   <a href="https://manejahpr.com/#testimonies">Testimonies</a>
   <a href="https://manejahpr.com/about">About</a>
+  <a href="https://manejahpr.com/#connect">Connect</a>
   <a href="https://manejahpr.com/join-the-team">Join The Team</a>
 </div>
 
@@ -806,60 +814,92 @@ footer {
 
 <!-- JAVASCRIPT -->
 <script>
-  const nav = document.getElementById('mainNav');
+  // Navigation
+  const nav = document.querySelector('nav');
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
 
   function updateNav() {
-    const heroH = document.getElementById('home').offsetHeight;
-    nav.classList.toggle('scrolled', window.scrollY > 40);
-    nav.classList.toggle('over-hero', window.scrollY < heroH - 80);
+    if (nav) {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }
   }
 
   window.addEventListener('scroll', updateNav, { passive: true });
   updateNav();
 
-  function smoothTo(id) {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-
+  // Mobile navigation
   function toggleMenu() {
-    const btn = document.getElementById('hamburger');
-    const menu = document.getElementById('mobileMenu');
-    const open = menu.classList.toggle('open');
+    if (!hamburger || !mobileMenu) return;
 
-    btn.classList.toggle('active', open);
+    const open = mobileMenu.classList.toggle('open');
+
+    hamburger.classList.toggle('active', open);
+    hamburger.setAttribute('aria-expanded', open);
+    hamburger.setAttribute(
+      'aria-label',
+      open ? 'Close navigation menu' : 'Open navigation menu'
+    );
+
+    mobileMenu.inert = !open;
     document.body.style.overflow = open ? 'hidden' : '';
   }
 
-  function closeMobileNav(id) {
-    document.getElementById('hamburger').classList.remove('active');
-    document.getElementById('mobileMenu').classList.remove('open');
-    document.body.style.overflow = '';
+  function closeMobileNav() {
+    if (!hamburger || !mobileMenu) return;
 
-    setTimeout(() => smoothTo(id), 60);
+    hamburger.classList.remove('active');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.setAttribute('aria-label', 'Open navigation menu');
+
+    mobileMenu.classList.remove('open');
+    mobileMenu.inert = true;
+    document.body.style.overflow = '';
   }
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
+  if (hamburger) {
+    hamburger.addEventListener('click', toggleMenu);
+  }
+
+  if (mobileMenu) {
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMobileNav);
     });
-  }, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -36px 0px'
+  }
+
+  // Close mobile menu with Escape
+  document.addEventListener('keydown', event => {
+    if (
+      event.key === 'Escape' &&
+      mobileMenu &&
+      mobileMenu.classList.contains('open')
+    ) {
+      closeMobileNav();
+    }
   });
 
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  // Reveal elements
+  const revealElements = document.querySelectorAll('.reveal');
 
-  document.querySelectorAll('.services-grid .service-card').forEach((el, i) => {
-    el.style.transitionDelay = `${(i % 3) * 0.1}s`;
-  });
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -36px 0px'
+    });
 
-  document.querySelectorAll('.clients-grid .client-card').forEach((el, i) => {
-    el.style.transitionDelay = `${(i % 4) * 0.08}s`;
-  });
+    revealElements.forEach(element => observer.observe(element));
+  } else {
+    revealElements.forEach(element => {
+      element.classList.add('visible');
+    });
+  }
 </script>
 
 </body>
