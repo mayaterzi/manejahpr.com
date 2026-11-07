@@ -1155,71 +1155,33 @@
 
   </main>
 
-/* ── FOOTER ── */
-footer {
-  background: var(--dark);
-  border-top: 1px solid rgba(232,220,207,0.08);
-  padding: 4rem 6rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 3rem;
-}
-
-.footer-logo {
-  font-family: 'IBM Plex Serif', Georgia, serif;
-  font-weight: 300;
-  font-size: 1.1rem;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--cream);
-  margin-bottom: 0.65rem;
-}
-
-.footer-tagline {
-  font-size: 0.95rem;
-  color: var(--mauve);
-  font-style: italic;
-}
-
-.footer-right {
-  text-align: left;
-}
-
-.footer-social {
-  display: flex;
-  gap: 1.5rem;
-  justify-content: flex-start;
-  margin-bottom: 0.85rem;
-}
-
-.footer-social a {
-  font-size: 0.85rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--mauve);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.footer-social a:hover {
-  color: var(--cream);
-}
-
-.footer-copy {
-  font-size: 0.78rem;
-  color: var(--mauve);
-  opacity: 0.55;
-  letter-spacing: 0.1em;
-}
-
-/* Mobile footer */
-@media (max-width: 900px) {
+<!-- FOOTER STYLES -->
+<style>
+  /* ── FOOTER ── */
   footer {
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-    padding: 3rem 1.75rem;
+    background: var(--dark);
+    border-top: 1px solid rgba(232, 220, 207, 0.08);
+    padding: 4rem 6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .footer-logo {
+    font-family: 'IBM Plex Serif', Georgia, serif;
+    font-weight: 300;
+    font-size: 1.1rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--cream);
+    margin-bottom: 0.65rem;
+  }
+
+  .footer-tagline {
+    font-size: 0.95rem;
+    color: var(--mauve);
+    font-style: italic;
   }
 
   .footer-right {
@@ -1227,68 +1189,124 @@ footer {
   }
 
   .footer-social {
+    display: flex;
+    gap: 1.5rem;
     justify-content: flex-start;
+    margin-bottom: 0.85rem;
   }
-}
 
-  <script>
-    // Mobile navigation
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
+  .footer-social a {
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mauve);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
 
-    function closeMenu() {
-      hamburger.classList.remove('active');
-      mobileMenu.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', 'false');
-      hamburger.setAttribute('aria-label', 'Open navigation menu');
-      mobileMenu.inert = true;
-      document.body.style.overflow = '';
+  .footer-social a:hover {
+    color: var(--cream);
+  }
+
+  .footer-copy {
+    font-size: 0.78rem;
+    color: var(--mauve);
+    opacity: 0.55;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── MOBILE FOOTER ── */
+  @media (max-width: 900px) {
+    footer {
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      padding: 3rem 1.75rem;
     }
 
-    hamburger.addEventListener('click', () => {
-      const isOpen = mobileMenu.classList.contains('open');
+    .footer-right {
+      text-align: left;
+    }
 
-      if (isOpen) {
-        closeMenu();
-      } else {
-        hamburger.classList.add('active');
-        mobileMenu.classList.add('open');
-        hamburger.setAttribute('aria-expanded', 'true');
-        hamburger.setAttribute('aria-label', 'Close navigation menu');
-        mobileMenu.inert = false;
-        document.body.style.overflow = 'hidden';
+    .footer-social {
+      justify-content: flex-start;
+    }
+  }
+</style>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <p class="footer-logo">Manejah PR</p>
+    <p class="footer-tagline">Helping small businesses tell their unique story.</p>
+  </div>
+
+  <div class="footer-right">
+    <div class="footer-social">
+      <a href="https://www.instagram.com/manejahpr/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://www.linkedin.com/company/manejahpr/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </div>
+    <p class="footer-copy">© 2026 Manejah PR · All rights reserved</p>
+  </div>
+</footer>
+
+<!-- JAVASCRIPT -->
+<script>
+  const nav = document.getElementById('mainNav');
+
+  function updateNav() {
+    const heroH = document.getElementById('home').offsetHeight;
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+    nav.classList.toggle('over-hero', window.scrollY < heroH - 80);
+  }
+
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+
+  function smoothTo(id) {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function toggleMenu() {
+    const btn = document.getElementById('hamburger');
+    const menu = document.getElementById('mobileMenu');
+    const open = menu.classList.toggle('open');
+
+    btn.classList.toggle('active', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+
+  function closeMobileNav(id) {
+    document.getElementById('hamburger').classList.remove('active');
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.body.style.overflow = '';
+
+    setTimeout(() => smoothTo(id), 60);
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
       }
     });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -36px 0px'
+  });
 
-    mobileMenu.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', closeMenu);
-    });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    document.addEventListener('keydown', event => {
-      if (event.key === 'Escape') closeMenu();
-    });
+  document.querySelectorAll('.services-grid .service-card').forEach((el, i) => {
+    el.style.transitionDelay = `${(i % 3) * 0.1}s`;
+  });
 
-    // Reveal elements as they enter the viewport
-    const revealElements = document.querySelectorAll('.reveal');
-
-    if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, {
-        threshold: 0.12,
-        rootMargin: '0px 0px -30px 0px'
-      });
-
-      revealElements.forEach(element => observer.observe(element));
-    } else {
-      revealElements.forEach(element => element.classList.add('visible'));
-    }
-  </script>
+  document.querySelectorAll('.clients-grid .client-card').forEach((el, i) => {
+    el.style.transitionDelay = `${(i % 4) * 0.08}s`;
+  });
+</script>
 
 </body>
 </html>
